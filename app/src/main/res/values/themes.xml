@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.FootballObserver" parent="android:Theme.Material.Light.NoActionBar" />
+    <style
+        name="Theme.AppTheme"
+        parent="ThemeOverlay.Material3.DynamicColors.DayNight"/>
 </resources>
