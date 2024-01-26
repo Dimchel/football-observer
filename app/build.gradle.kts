@@ -41,5 +41,7 @@ android {
 }
 
 dependencies {
-    implementation(libs.android.material)
+    implementation(project(":core:common"))
+    implementation(project(":core:ui"))
+    implementation(project(":feature:leagues"))
 }

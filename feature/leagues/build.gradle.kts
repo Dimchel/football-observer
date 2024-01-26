@@ -7,5 +7,6 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.fragment.ktx)
+    implementation(project(":core:common"))
+    implementation(project(":core:ui"))
 }

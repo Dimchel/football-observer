@@ -17,4 +17,6 @@ dependencyResolutionManagement {
 rootProject.name = "Football Observer"
 
 include(":app")
+include(":core:common")
+include(":core:ui")
 include(":feature:leagues")
