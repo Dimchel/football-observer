@@ -1,6 +1,7 @@
 [versions]
 androidx-core_ktx = "1.12.0"
 androidx-lifecycle = "2.7.0"
+androidx-fragment-ktx = "1.6.2"
 android-material = "1.11.0"
 agp = "8.2.2"
 kotlin = "1.8.22"
@@ -8,8 +9,13 @@ kotlin = "1.8.22"
 [libraries]
 androidx-corektx = { module = "androidx.core:core-ktx", version.ref = "androidx-core_ktx" }
 lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle" }
+
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "androidx-fragment-ktx" }
 android-material = { module = "com.google.android.material:material", version.ref = "android-material" }
+
 android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 
 [plugins]
+fa-kotlin-module = { id = "kotlin-module", version = "unspecified" }
+fa-feature-module = { id = "feature-module", version = "unspecified" }
