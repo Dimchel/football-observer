@@ -31,47 +31,58 @@ internal interface CoreNetworkComponent : CoreNetworkDependency {
 }
 
 @Module
-internal abstract class NetworkModule {
+internal class NetworkModule {
 
-    @AppScope
-    @Provides
-    fun provideOkHttpLoggingInterceptor(): HttpLoggingInterceptor =
-        HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BODY
-        }
+    companion object {
+        @AppScope
+        @Provides
+        fun provideOkHttpLoggingInterceptor(): HttpLoggingInterceptor =
+            HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            }
 
-    @AppScope
-    @Provides
-    fun provideOkHttpInterceptor(): Interceptor =
-        Interceptor { chain ->
-            val request = chain.request().newBuilder()
-                .addHeader(SESSION_HEADER, SESSION_TOKEN)
+        @AppScope
+        @Provides
+        fun provideOkHttpInterceptor(): Interceptor =
+            Interceptor { chain ->
+                val request = chain.request().newBuilder()
+                    .addHeader(SESSION_HEADER, SESSION_TOKEN)
+                    .build()
+
+                chain.proceed(request)
+            }
+
+        @AppScope
+        @Provides
+        fun provideOkHttpClient(
+            headerInterceptor: Interceptor,
+            loggingInterceptor: HttpLoggingInterceptor
+        ): OkHttpClient =
+            OkHttpClient.Builder()
+                .addInterceptor(headerInterceptor)
+                .addInterceptor(loggingInterceptor)
                 .build()
 
-            chain.proceed(request)
-        }
 
-    @AppScope
-    @Provides
-    fun provideOkHttpClient(
-        headerInterceptor: Interceptor,
-        loggingInterceptor: HttpLoggingInterceptor
-    ): OkHttpClient =
-        OkHttpClient.Builder()
-            .addInterceptor(headerInterceptor)
-            .addInterceptor(loggingInterceptor)
-            .build()
+        @AppScope
+        @Provides
+        fun provideJson(): Json = Json{ ignoreUnknownKeys = true }
 
-    @AppScope
-    @Provides
-    fun provideConverterFactory(): Converter.Factory = Json.asConverterFactory(JSON_CONTENT_TYPE)
+        @AppScope
+        @Provides
+        fun provideConverterFactory(json : Json): Converter.Factory =
+            json.asConverterFactory(JSON_CONTENT_TYPE)
 
-    @AppScope
-    @Provides
-    fun provideRetrofit(okHttpClient: OkHttpClient, converterFactory: Converter.Factory): Retrofit =
-        Retrofit.Builder()
-            .client(okHttpClient)
-            .addConverterFactory(converterFactory)
-            .baseUrl(BASE_URL)
-            .build()
+        @AppScope
+        @Provides
+        fun provideRetrofit(
+            okHttpClient: OkHttpClient,
+            converterFactory: Converter.Factory,
+        ): Retrofit =
+            Retrofit.Builder()
+                .client(okHttpClient)
+                .addConverterFactory(converterFactory)
+                .baseUrl(BASE_URL)
+                .build()
+    }
 }

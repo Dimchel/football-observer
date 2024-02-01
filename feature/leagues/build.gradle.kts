@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.fa.feature.module)
-
     id("com.google.devtools.ksp")
+    id("kotlinx-serialization")
 }
 
 android {

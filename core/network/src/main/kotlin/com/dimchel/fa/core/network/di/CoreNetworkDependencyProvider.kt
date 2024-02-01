@@ -5,7 +5,6 @@ import com.dimchel.fa.core.common.di.BaseDependencyProviderImpl
 
 object CoreNetworkDependencyProvider : BaseDependencyProviderImpl<CoreNetworkDependency>() {
 
-    override fun createDependency(application: Application): CoreNetworkDependency {
-        TODO("Not yet implemented")
-    }
+    override fun createDependency(application: Application): CoreNetworkDependency =
+        DaggerCoreNetworkComponent.factory().create(application)
 }
