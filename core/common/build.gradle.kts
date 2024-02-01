@@ -7,5 +7,7 @@ android {
 }
 
 dependencies {
-
+    api(libs.google.dagger)
+    api(libs.kotlinx.coroutines.core)
+    api(libs.kotlinx.coroutines.android)
 }
