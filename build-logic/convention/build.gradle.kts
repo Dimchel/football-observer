@@ -32,5 +32,9 @@ gradlePlugin {
             id = "feature-module"
             implementationClass = "com.dimchel.fa.build_logic.convention.FeatureModulePlugin"
         }
+        register("compose-module") {
+            id = "compose-module"
+            implementationClass = "com.dimchel.fa.build_logic.convention.ComposeModulePlugin"
+        }
     }
 }

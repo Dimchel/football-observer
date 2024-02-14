@@ -6,8 +6,9 @@ dagger = "2.50"
 androidx-core_ktx = "1.12.0"
 androidx-lifecycle = "2.7.0"
 androidx-fragment-ktx = "1.6.2"
-android-material = "1.11.0"
 androidx_navigation = "2.7.7"
+androidx-compose-bom = "2024.02.00"
+android-material = "1.11.0"
 retrofit = "2.9.0"
 okhttp = "4.12.0"
 serialization = "1.6.0"
@@ -17,6 +18,7 @@ kotlinx_serialization_converter = "1.0.0"
 androidx-corektx = { module = "androidx.core:core-ktx", version.ref = "androidx-core_ktx" }
 lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle" }
 
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidx-compose-bom" }
 androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidx_navigation" }
 
@@ -41,3 +43,4 @@ google-dagger-compiler = { module = "com.google.dagger:dagger-compiler", version
 [plugins]
 fa-kotlin-module = { id = "kotlin-module", version = "unspecified" }
 fa-feature-module = { id = "feature-module", version = "unspecified" }
+fa-compose-module = { id = "compose-module", version = "unspecified" }
