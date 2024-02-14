@@ -2,6 +2,7 @@ package com.dimchel.fa.feature.leagues.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dimchel.fa.core.common.utils.klog
 import com.dimchel.fa.feature.leagues.data.repositories.LeaguesRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -21,5 +22,9 @@ internal class LeaguesViewModel @Inject constructor(
         viewModelScope.launch {
             mutableUiState.update { LeaguesUiState.Success(repository.getLeagues()) }
         }
+    }
+
+    fun onLeagueClicked(leagueId: Int) {
+        klog("onLeagueClicked: $leagueId")
     }
 }

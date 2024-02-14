@@ -1,4 +1,4 @@
-package com.dimchel.fa.core.ui
+package com.dimchel.fa.core.architecture
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

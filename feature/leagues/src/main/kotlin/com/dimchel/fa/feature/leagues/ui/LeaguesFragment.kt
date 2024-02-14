@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
-import com.dimchel.fa.core.ui.BaseFragment
+import com.dimchel.fa.core.architecture.BaseFragment
 import com.dimchel.fa.feature.leagues.di.LeaguesDependencyProvider
 import javax.inject.Inject
 import javax.inject.Provider
@@ -29,7 +29,9 @@ internal class LeaguesFragment : BaseFragment() {
         savedInstanceState: Bundle?,
     ): View = ComposeView(requireContext()).apply {
         setContent {
-            LeaguesScreen(viewModel)
+            LeaguesScreen(viewModel) { leagueId ->
+                viewModel.onLeagueClicked(leagueId)
+            }
         }
     }
 }
