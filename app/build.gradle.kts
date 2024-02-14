@@ -19,7 +19,12 @@ android {
             useSupportLibrary = true
         }
     }
-
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.9"
+    }
     buildTypes {
         release {
             isMinifyEnabled = false

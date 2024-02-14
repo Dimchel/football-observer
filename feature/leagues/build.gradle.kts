@@ -6,6 +6,12 @@ plugins {
 
 android {
     namespace = "com.dimchel.fa.feature.leagues"
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.9"
+    }
 }
 
 dependencies {
