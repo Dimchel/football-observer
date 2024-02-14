@@ -12,6 +12,5 @@ internal class LeaguesScheme(
 internal class LeagueScheme(
     @SerialName("id") val id: Int,
     @SerialName("name") val name: String,
-    @SerialName("code") val code: String?,
     @SerialName("lastUpdated") val lastUpdated: String,
 )

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
-import androidx.lifecycle.viewModelScope
 import com.dimchel.fa.core.ui.BaseFragment
 import com.dimchel.fa.feature.leagues.di.LeaguesDependencyProvider
 import javax.inject.Inject
@@ -30,8 +29,7 @@ internal class LeaguesFragment : BaseFragment() {
         savedInstanceState: Bundle?,
     ): View = ComposeView(requireContext()).apply {
         setContent {
-            LeaguesScreen()
+            LeaguesScreen(viewModel)
         }
-        viewModel.viewModelScope
     }
 }

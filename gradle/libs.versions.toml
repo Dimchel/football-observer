@@ -6,7 +6,8 @@ dagger = "2.50"
 androidx-core_ktx = "1.12.0"
 androidx-lifecycle = "2.7.0"
 androidx-fragment-ktx = "1.6.2"
-androidx_navigation = "2.7.7"
+androidx_navigation_compose = "2.7.7"
+androidx_lifecycle_compose = "2.7.0"
 androidx-compose-bom = "2024.02.00"
 android-material = "1.11.0"
 retrofit = "2.9.0"
@@ -20,7 +21,8 @@ lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", v
 
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidx-compose-bom" }
 androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
-androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidx_navigation" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidx_navigation_compose" }
+androidx-lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx_lifecycle_compose" }
 
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "androidx-fragment-ktx" }
 android-material = { module = "com.google.android.material:material", version.ref = "android-material" }
