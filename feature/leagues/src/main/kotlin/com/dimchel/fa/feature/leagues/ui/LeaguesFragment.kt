@@ -5,12 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
-import com.dimchel.fa.core.common.utils.klog
+import androidx.lifecycle.viewModelScope
 import com.dimchel.fa.core.ui.BaseFragment
-import com.dimchel.fa.feature.leagues.data.repositories.LeaguesRepository
 import com.dimchel.fa.feature.leagues.di.LeaguesDependencyProvider
-import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
+import javax.inject.Provider
 
 internal class LeaguesFragment : BaseFragment() {
 
@@ -19,11 +18,11 @@ internal class LeaguesFragment : BaseFragment() {
     }
 
     @Inject
-    lateinit var repository: LeaguesRepository
+    internal lateinit var viewModelProvider: Provider<LeaguesViewModel>
+    private val viewModel: LeaguesViewModel by lazy { viewModelProvider.get() }
 
-    override fun injectDependencies() {
+    override fun injectDependencies() =
         LeaguesDependencyProvider.provide(requireActivity().application).inject(this)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,13 +32,6 @@ internal class LeaguesFragment : BaseFragment() {
         setContent {
             LeaguesScreen()
         }
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        runBlocking {
-            klog("result: " + repository.getLeagues().toString())
-        }
+        viewModel.viewModelScope
     }
 }
