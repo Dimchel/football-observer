@@ -6,7 +6,7 @@ import retrofit2.http.Path
 
 internal interface LeagueApiService {
 
-    @GET("v2/competitions/{code}/standings")
+    @GET("v4/competitions/{code}/standings")
     suspend fun getLeague(@Path("code") leagueCode: String): LeagueScheme
 
 }

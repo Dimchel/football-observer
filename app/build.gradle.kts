@@ -43,6 +43,6 @@ dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:navigation"))
     implementation(project(":core:ui"))
-    implementation(project(":feature:leagues"))
+    implementation(project(":feature:competitions"))
     implementation(project(":feature:league"))
 }
