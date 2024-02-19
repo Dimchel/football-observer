@@ -10,9 +10,16 @@ internal class LeaguesRepositoryImpl @Inject constructor(
     private val apiService: LeaguesApiService,
 ) : LeaguesRepository {
 
-    override suspend fun getLeagues(): List<LeagueModel> =
+    private var cachedLeaguesData: List<LeagueModel>? = null
+
+    override suspend fun getLeagues(): List<LeagueModel> {
+        return cachedLeaguesData ?: fetchLeagues()
+    }
+
+    private suspend fun fetchLeagues(): List<LeagueModel> =
         apiService.getLeaguesList()
             .leaguesList
             .filter { SupportedLeagues.SUPPORTED_LEAGUES.contains(it.code) }
             .map { it.toModel() }
+            .also { cachedLeaguesData = it }
 }

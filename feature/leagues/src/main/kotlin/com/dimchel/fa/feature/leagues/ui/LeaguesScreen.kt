@@ -35,7 +35,7 @@ internal fun LeaguesScreen(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    FaTheme(dynamicColor = false) {
+    FaTheme(dynamicColor = true) {
         Surface {
             when (val state = uiState) {
                 is LeaguesUiState.Loading -> LoadingState()
