@@ -67,13 +67,13 @@ internal fun SuccessState(
 ) {
     LazyColumn {
         items(leagues) { league ->
-            LeagueCard(league, onLeagueClicked)
+            LeagueItem(league, onLeagueClicked)
         }
     }
 }
 
 @Composable
-internal fun LeagueCard(
+internal fun LeagueItem(
     league: LeagueModel,
     onLeagueClicked: (leagueId: Int) -> Unit,
 ) {

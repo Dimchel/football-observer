@@ -18,6 +18,8 @@ rootProject.name = "Football Observer"
 
 include(":app")
 include(":core:common")
+include(":core:navigation")
+include(":core:network")
 include(":core:ui")
 include(":feature:leagues")
-include(":core:network")
+include(":feature:league")
