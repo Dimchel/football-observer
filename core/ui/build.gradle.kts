@@ -13,4 +13,5 @@ dependencies {
     api(libs.androidx.navigation.compose)
     api(libs.androidx.lifecycle.compose)
     api(libs.android.material)
+    api(libs.coil.compose)
 }

@@ -14,4 +14,5 @@ internal class LeagueScheme(
     @SerialName("name") val name: String,
     @SerialName("code") val code: String?,
     @SerialName("lastUpdated") val lastUpdated: String,
+    @SerialName("emblemUrl") val emblemUrl: String?,
 )

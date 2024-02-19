@@ -7,4 +7,5 @@ internal fun LeagueScheme.toModel() = LeagueModel(
     id = id,
     name = name,
     lastUpdated = lastUpdated,
+    emblemUrl = emblemUrl,
 )
