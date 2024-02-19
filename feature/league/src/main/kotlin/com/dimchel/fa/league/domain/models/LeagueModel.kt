@@ -1,42 +1,32 @@
 package com.dimchel.fa.league.domain.models
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
-
-@Serializable
-internal class LeagueScheme(
-    @SerialName("competition") val competition: LeagueInfoScheme,
-    @SerialName("standings") val standings: List<StandingsScheme>
+internal class LeagueModel(
+    val competition: LeagueInfoModel,
+    val standings: List<CompetitorModel>,
 )
 
-@Serializable
-internal class LeagueInfoScheme(
-    @SerialName("id") val id: Int,
-    @SerialName("name") val name: String
+internal class LeagueInfoModel(
+    val id: Int,
+    val name: String,
+    val emblemUrl: String,
 )
 
-@Serializable
-internal class StandingsScheme(
-    @SerialName("table") val table: List<CompetitorScheme>
+internal class CompetitorModel(
+    val position: Int,
+    val team: TeamModel,
+    val playedGames: Int,
+    val won: Int,
+    val draw: Int,
+    val lost: Int,
+    val points: Int,
+    val goalsFor: Int,
+    val goalsAgainst: Int,
+    val goalDifference: Int,
 )
 
-@Serializable
-internal class CompetitorScheme(
-    @SerialName("position") val position: Int,
-    @SerialName("team") val team: TeamScheme,
-    @SerialName("playedGames") val playedGames: Int,
-    @SerialName("won") val won: Int,
-    @SerialName("draw") val draw: Int,
-    @SerialName("lost") val lost: Int,
-    @SerialName("points") val points: Int,
-    @SerialName("goalsFor") val goalsFor: Int,
-    @SerialName("goalsAgainst") val goalsAgainst: Int,
-    @SerialName("goalDifference") val goalDifference: Int
-)
-
-@Serializable
-internal class TeamScheme(
-    @SerialName("id") val id: Int,
-    @SerialName("name") val name: String,
-    @SerialName("crestUrl") val crestUrl: String
+internal class TeamModel(
+    val id: Int,
+    val name: String,
+    val shortName: String,
+    val crestUrl: String,
 )

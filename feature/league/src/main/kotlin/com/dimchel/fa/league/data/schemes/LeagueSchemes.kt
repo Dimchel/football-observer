@@ -6,18 +6,19 @@ import kotlinx.serialization.Serializable
 @Serializable
 internal class LeagueScheme(
     @SerialName("competition") val competition: LeagueInfoScheme,
-    @SerialName("standings") val standings: List<StandingsScheme>
+    @SerialName("standings") val standings: List<StandingScheme>,
 )
 
 @Serializable
 internal class LeagueInfoScheme(
     @SerialName("id") val id: Int,
-    @SerialName("name") val name: String
+    @SerialName("name") val name: String,
+    @SerialName("emblem") val emblemUrl: String,
 )
 
 @Serializable
-internal class StandingsScheme(
-    @SerialName("table") val table: List<CompetitorScheme>
+internal class StandingScheme(
+    @SerialName("table") val table: List<CompetitorScheme>,
 )
 
 @Serializable
@@ -31,12 +32,13 @@ internal class CompetitorScheme(
     @SerialName("points") val points: Int,
     @SerialName("goalsFor") val goalsFor: Int,
     @SerialName("goalsAgainst") val goalsAgainst: Int,
-    @SerialName("goalDifference") val goalDifference: Int
+    @SerialName("goalDifference") val goalDifference: Int,
 )
 
 @Serializable
 internal class TeamScheme(
     @SerialName("id") val id: Int,
     @SerialName("name") val name: String,
-    @SerialName("crestUrl") val crestUrl: String
+    @SerialName("shortName") val shortName: String,
+    @SerialName("crest") val crestUrl: String,
 )

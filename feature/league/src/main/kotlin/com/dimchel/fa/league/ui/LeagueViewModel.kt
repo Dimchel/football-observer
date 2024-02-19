@@ -6,6 +6,7 @@ import com.dimchel.fa.core.common.utils.klog
 import com.dimchel.fa.league.data.repositories.LeagueRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,8 +20,10 @@ internal class LeagueViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            repository.getLeague("PL")
-//            mutableUiState.update { LeaguesUiState.Success(repository.getLeagues()) }
+            val leagueData = repository.getLeague("PL")
+            mutableUiState.update {
+                LeaguesUiState.Success(leagueData.competition, leagueData.standings)
+            }
         }
     }
 

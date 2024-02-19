@@ -2,7 +2,7 @@ package com.dimchel.fa
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
-import com.dimchel.fa.feature.competitions.CompetitionsNavigation
+import com.dimchel.fa.league.LeagueNavigation
 
 class MainActivity : FragmentActivity() {
 
@@ -12,7 +12,7 @@ class MainActivity : FragmentActivity() {
         setContentView(R.layout.activity_main)
 
         supportFragmentManager.beginTransaction()
-            .add(R.id.container_view, CompetitionsNavigation.getScreen())
+            .add(R.id.container_view, LeagueNavigation.getScreen())
             .commit()
     }
 }

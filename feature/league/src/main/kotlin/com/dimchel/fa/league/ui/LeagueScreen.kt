@@ -26,6 +26,7 @@ internal fun LeaguesScreen(
                 is LeaguesUiState.Loading -> LoadingState()
                 is LeaguesUiState.Error -> ErrorState()
 //                is LeaguesUiState.Success -> SuccessState(state.leaguesList, onLeagueClicked)
+                is LeaguesUiState.Success -> Unit
             }
         }
     }
