@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.dimchel.fa.core.theme.FaTheme
-import com.dimchel.fa.feature.competitions.CompetitionsNavigation
+import com.dimchel.fa.league.LeagueNavigation
 
 class MainActivity : ComponentActivity() {
 
@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             FaTheme(dynamicColor = true) {
                 Surface(Modifier.fillMaxSize()) {
-                    CompetitionsNavigation.getScreen().Content()
+                    LeagueNavigation.getScreen().Content()
                 }
             }
         }

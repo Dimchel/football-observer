@@ -1,8 +1,8 @@
 package com.dimchel.fa.league
 
-import androidx.fragment.app.Fragment
-import com.dimchel.fa.league.presentation.LeagueFragment
+import com.dimchel.fa.core.common.architecture.Screen
+import com.dimchel.fa.league.presentation.LeagueScreen
 
 object LeagueNavigation {
-    fun getScreen() : Fragment = LeagueFragment.newInstance()
+    fun getScreen() : Screen = LeagueScreen()
 }

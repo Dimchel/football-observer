@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -15,20 +14,26 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.dimchel.fa.core.theme.FaTheme
+import com.dimchel.fa.core.common.architecture.Screen
+import com.dimchel.fa.core.common.architecture.application
+import com.dimchel.fa.core.common.architecture.daggerViewModel
+import com.dimchel.fa.league.di.LeagueDependencyProvider
 import com.dimchel.fa.league.domain.models.CompetitorModel
 
-@Composable
-internal fun LeagueScreen(viewModel: LeagueViewModel) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+internal class LeagueScreen : Screen {
 
-    FaTheme(dynamicColor = true) {
-        Surface {
-            when (val state = uiState) {
-                is LeagueUiState.Loading -> LoadingState()
-                is LeagueUiState.Error -> ErrorState()
-                is LeagueUiState.Success -> SuccessState(state.standings)
-            }
+    @Composable
+    override fun Content() {
+        val application = application()
+        val viewModel: LeagueViewModel = daggerViewModel {
+            LeagueDependencyProvider.provide(application).getViewModel()
+        }
+        val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+        when (val state = uiState) {
+            is LeagueUiState.Loading -> LoadingState()
+            is LeagueUiState.Error -> ErrorState()
+            is LeagueUiState.Success -> SuccessState(state.standings)
         }
     }
 }

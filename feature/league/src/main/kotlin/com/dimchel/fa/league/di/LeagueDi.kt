@@ -6,7 +6,7 @@ import com.dimchel.fa.core.network.di.CoreNetworkDependency
 import com.dimchel.fa.league.data.api.LeagueApiService
 import com.dimchel.fa.league.data.repositories.LeagueRepository
 import com.dimchel.fa.league.data.repositories.LeagueRepositoryImpl
-import com.dimchel.fa.league.presentation.LeagueFragment
+import com.dimchel.fa.league.presentation.LeagueViewModel
 import dagger.Binds
 import dagger.BindsInstance
 import dagger.Component
@@ -29,7 +29,7 @@ internal interface LeagueComponent {
         ): LeagueComponent
     }
 
-    fun inject(fragment: LeagueFragment)
+    fun getViewModel(): LeagueViewModel
 }
 
 @Module
