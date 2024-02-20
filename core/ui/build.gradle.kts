@@ -8,7 +8,6 @@ android {
 }
 
 dependencies {
-    api(libs.androidx.fragment.ktx)
     api(libs.androidx.compose.material)
     api(libs.androidx.compose.material3)
     api(libs.androidx.navigation.compose)

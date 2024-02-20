@@ -1,8 +1,8 @@
 package com.dimchel.fa.feature.competitions
 
-import androidx.fragment.app.Fragment
-import com.dimchel.fa.feature.competitions.presentation.CompetitionsFragment
+import com.dimchel.fa.core.common.architecture.Screen
+import com.dimchel.fa.feature.competitions.presentation.CompetitionsScreen
 
 object CompetitionsNavigation {
-    fun getScreen() : Fragment = CompetitionsFragment.newInstance()
+    fun getScreen() : Screen = CompetitionsScreen()
 }

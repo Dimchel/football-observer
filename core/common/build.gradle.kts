@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.fa.feature.module)
+    alias(libs.plugins.fa.compose.module)
 }
 
 android {
@@ -8,7 +9,8 @@ android {
 
 dependencies {
     api(libs.google.dagger)
-    api(libs.androidx.fragment.ktx)
     api(libs.kotlinx.coroutines.core)
     api(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.lifecycle.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 }

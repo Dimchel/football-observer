@@ -16,7 +16,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -25,23 +24,29 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
-import com.dimchel.fa.core.theme.FaTheme
+import com.dimchel.fa.core.common.architecture.Screen
+import com.dimchel.fa.core.common.architecture.application
+import com.dimchel.fa.core.common.architecture.daggerViewModel
+import com.dimchel.fa.feature.competitions.di.CompetitionsDependencyProvider
 import com.dimchel.fa.feature.competitions.domain.models.CompetitionModel
 
-@Composable
-internal fun CompetitionsScreen(
-    viewModel: CompetitionsViewModel,
-    onCompetitionClicked: (competitionId: Int) -> Unit,
-) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+internal class CompetitionsScreen : Screen {
 
-    FaTheme(dynamicColor = true) {
-        Surface {
-            when (val state = uiState) {
-                is CompetitionsUiState.Loading -> LoadingState()
-                is CompetitionsUiState.Error -> ErrorState()
-                is CompetitionsUiState.Success -> SuccessState(state.competitionsList, onCompetitionClicked)
-            }
+    @Composable
+    override fun Content() {
+        val application = application()
+        val viewModel: CompetitionsViewModel = daggerViewModel {
+            CompetitionsDependencyProvider.provide(application).getViewModel()
+        }
+        val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+        when (val state = uiState) {
+            is CompetitionsUiState.Loading -> LoadingState()
+            is CompetitionsUiState.Error -> ErrorState()
+            is CompetitionsUiState.Success -> SuccessState(
+                state.competitionsList,
+                onCompetitionClicked = { viewModel.onLeagueClicked(it) }
+            )
         }
     }
 }

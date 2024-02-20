@@ -1,18 +1,25 @@
 package com.dimchel.fa
 
 import android.os.Bundle
-import androidx.fragment.app.FragmentActivity
-import com.dimchel.fa.league.LeagueNavigation
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Surface
+import androidx.compose.ui.Modifier
+import com.dimchel.fa.core.theme.FaTheme
+import com.dimchel.fa.feature.competitions.CompetitionsNavigation
 
-class MainActivity : FragmentActivity() {
+class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_main)
-
-        supportFragmentManager.beginTransaction()
-            .add(R.id.container_view, LeagueNavigation.getScreen())
-            .commit()
+        setContent {
+            FaTheme(dynamicColor = true) {
+                Surface(Modifier.fillMaxSize()) {
+                    CompetitionsNavigation.getScreen().Content()
+                }
+            }
+        }
     }
 }
