@@ -1,4 +1,4 @@
-package com.dimchel.fa.feature.competitions.ui
+package com.dimchel.fa.feature.competitions.presentation
 
 import com.dimchel.fa.core.common.architecture.UiState
 import com.dimchel.fa.feature.competitions.domain.models.CompetitionModel

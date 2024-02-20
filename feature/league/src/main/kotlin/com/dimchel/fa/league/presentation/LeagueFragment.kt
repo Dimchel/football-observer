@@ -1,4 +1,4 @@
-package com.dimchel.fa.league.ui
+package com.dimchel.fa.league.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -29,9 +29,7 @@ internal class LeagueFragment : BaseFragment() {
         savedInstanceState: Bundle?,
     ): View = ComposeView(requireContext()).apply {
         setContent {
-            LeaguesScreen(viewModel) { leagueId ->
-                viewModel.onLeagueClicked(leagueId)
-            }
+            LeagueScreen(viewModel)
         }
     }
 }

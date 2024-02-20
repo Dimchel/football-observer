@@ -1,4 +1,4 @@
-package com.dimchel.fa.feature.competitions.ui
+package com.dimchel.fa.feature.competitions.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

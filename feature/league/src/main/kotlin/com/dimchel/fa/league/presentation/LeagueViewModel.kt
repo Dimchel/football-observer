@@ -1,4 +1,4 @@
-package com.dimchel.fa.league.ui
+package com.dimchel.fa.league.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,15 +14,15 @@ internal class LeagueViewModel @Inject constructor(
     private val repository: LeagueRepository
 ) : ViewModel() {
 
-    private val mutableUiState: MutableStateFlow<LeaguesUiState> =
-        MutableStateFlow(LeaguesUiState.Loading)
-    val uiState: StateFlow<LeaguesUiState> = mutableUiState
+    private val mutableUiState: MutableStateFlow<LeagueUiState> =
+        MutableStateFlow(LeagueUiState.Loading)
+    val uiState: StateFlow<LeagueUiState> = mutableUiState
 
     init {
         viewModelScope.launch {
             val leagueData = repository.getLeague("PL")
             mutableUiState.update {
-                LeaguesUiState.Success(leagueData.competition, leagueData.standings)
+                LeagueUiState.Success(leagueData.competition, leagueData.standings)
             }
         }
     }

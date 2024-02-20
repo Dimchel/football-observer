@@ -6,7 +6,7 @@ import com.dimchel.fa.core.network.di.CoreNetworkDependency
 import com.dimchel.fa.feature.competitions.data.api.CompetitionsApiService
 import com.dimchel.fa.feature.competitions.data.repositories.CompetitionsRepository
 import com.dimchel.fa.feature.competitions.data.repositories.CompetitionsRepositoryImpl
-import com.dimchel.fa.feature.competitions.ui.CompetitionsFragment
+import com.dimchel.fa.feature.competitions.presentation.CompetitionsFragment
 import dagger.Binds
 import dagger.BindsInstance
 import dagger.Component

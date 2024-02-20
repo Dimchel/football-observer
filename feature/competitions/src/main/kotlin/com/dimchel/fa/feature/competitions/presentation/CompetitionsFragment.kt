@@ -1,4 +1,4 @@
-package com.dimchel.fa.feature.competitions.ui
+package com.dimchel.fa.feature.competitions.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
