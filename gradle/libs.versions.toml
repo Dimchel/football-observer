@@ -15,7 +15,7 @@ retrofit = "2.9.0"
 okhttp = "4.12.0"
 serialization = "1.6.0"
 kotlinx_serialization_converter = "1.0.0"
-coil_compose = "2.5.0"
+coil-compose = "2.5.0"
 
 [libraries]
 androidx-corektx = { module = "androidx.core:core-ktx", version.ref = "androidx-core_ktx" }
@@ -24,6 +24,7 @@ lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", v
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidx-compose-bom" }
 androidx-compose-material = { module = "androidx.compose.material:material", version.ref = "androidx-compose-material" }
 androidx-compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "androidx-compose-material3" }
+androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation-compose" }
 androidx-lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle-compose" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle-compose" }
@@ -45,7 +46,8 @@ kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutine
 google-dagger = { module = "com.google.dagger:dagger", version.ref = "dagger"}
 google-dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
 
-coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil_compose" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil-compose" }
+coil-svg = { module = "io.coil-kt:coil-svg", version.ref = "coil-compose" }
 
 [plugins]
 fa-kotlin-module = { id = "kotlin-module", version = "unspecified" }

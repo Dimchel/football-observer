@@ -10,8 +10,10 @@ android {
 dependencies {
     api(libs.androidx.compose.material)
     api(libs.androidx.compose.material3)
+    api(libs.androidx.compose.ui.tooling)
     api(libs.androidx.navigation.compose)
     api(libs.androidx.lifecycle.compose)
     api(libs.android.material)
     api(libs.coil.compose)
+    api(libs.coil.svg)
 }
