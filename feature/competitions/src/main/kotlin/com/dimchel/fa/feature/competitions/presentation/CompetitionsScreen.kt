@@ -21,9 +21,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
+import coil.decode.SvgDecoder
+import coil.request.ImageRequest
 import com.dimchel.fa.core.common.architecture.Screen
 import com.dimchel.fa.core.common.architecture.application
 import com.dimchel.fa.core.common.architecture.daggerViewModel
@@ -52,7 +56,7 @@ internal class CompetitionsScreen : Screen {
 }
 
 @Composable
-internal fun LoadingState() {
+private fun LoadingState() {
     Box(contentAlignment = Alignment.Center) {
         CircularProgressIndicator(
             modifier = Modifier.width(64.dp)
@@ -61,12 +65,12 @@ internal fun LoadingState() {
 }
 
 @Composable
-internal fun ErrorState() {
+private fun ErrorState() {
     Text(text = "Some error happened")
 }
 
 @Composable
-internal fun SuccessState(
+private fun SuccessState(
     competitions: List<CompetitionModel>,
     onCompetitionClicked: (competitionId: Int) -> Unit,
 ) {
@@ -78,7 +82,7 @@ internal fun SuccessState(
 }
 
 @Composable
-internal fun CompetitionItem(
+private fun CompetitionItem(
     competition: CompetitionModel,
     onCompetitionClicked: (competitionId: Int) -> Unit,
 ) {
@@ -101,10 +105,13 @@ internal fun CompetitionItem(
                 contentAlignment = Alignment.Center,
             ) {
                 AsyncImage(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(competition.emblemUrl)
+                        .decoderFactory(SvgDecoder.Factory())
+                        .build(),
                     modifier = Modifier
                         .padding(8.dp)
                         .size(48.dp),
-                    model = competition.emblemUrl,
                     contentDescription = null,
                 )
             }
@@ -116,4 +123,13 @@ internal fun CompetitionItem(
         }
         HorizontalDivider(color = MaterialTheme.colorScheme.secondaryContainer)
     }
+}
+
+@Preview
+@Composable
+private fun CompetitionItem() {
+    CompetitionItem(
+        competition = CompetitionModel(1, "Premiew league", "", ""),
+        onCompetitionClicked = {},
+    )
 }
