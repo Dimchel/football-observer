@@ -16,4 +16,5 @@ dependencies {
     api(libs.android.material)
     api(libs.coil.compose)
     api(libs.coil.svg)
+    api(libs.cafeadriel.voyager.navigator)
 }
