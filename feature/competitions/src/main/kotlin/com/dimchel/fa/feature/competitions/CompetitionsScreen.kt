@@ -1,4 +1,4 @@
-package com.dimchel.fa.feature.competitions.presentation
+package com.dimchel.fa.feature.competitions
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -7,6 +7,11 @@ import cafe.adriel.voyager.core.screen.Screen
 import com.dimchel.fa.core.common.architecture.application
 import com.dimchel.fa.core.common.architecture.daggerViewModel
 import com.dimchel.fa.feature.competitions.di.CompetitionsDependencyProvider
+import com.dimchel.fa.feature.competitions.presentation.CompetitionsUiState
+import com.dimchel.fa.feature.competitions.presentation.CompetitionsViewModel
+import com.dimchel.fa.feature.competitions.presentation.ErrorState
+import com.dimchel.fa.feature.competitions.presentation.LoadingState
+import com.dimchel.fa.feature.competitions.presentation.SuccessState
 
 object CompetitionsScreen : Screen {
 

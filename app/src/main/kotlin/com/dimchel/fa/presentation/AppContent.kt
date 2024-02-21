@@ -37,8 +37,7 @@ fun AppContent() {
                 Modifier
                     .fillMaxSize()
                     .padding(it)
-            )
-            {
+            ) {
                 CurrentScreen()
             }
         }

@@ -1,6 +1,7 @@
 package com.dimchel.fa.league.di
 
 import android.app.Application
+import com.dimchel.fa.core.common.di.Dependencies
 import com.dimchel.fa.core.common.di.FeatureScope
 import com.dimchel.fa.core.network.di.CoreNetworkDependency
 import com.dimchel.fa.league.data.api.LeagueApiService
@@ -19,12 +20,13 @@ import retrofit2.Retrofit
     modules = [LeagueModule::class],
     dependencies = [CoreNetworkDependency::class]
 )
-internal interface LeagueComponent {
+internal interface LeagueComponent : Dependencies {
 
     @Component.Factory
     interface Factory {
         fun create(
             @BindsInstance application: Application,
+            @BindsInstance leagueStartParams: LeagueStartParams,
             coreNetworkDependency: CoreNetworkDependency,
         ): LeagueComponent
     }

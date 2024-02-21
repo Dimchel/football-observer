@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import cafe.adriel.voyager.navigator.Navigator
-import com.dimchel.fa.feature.competitions.presentation.CompetitionsScreen
+import com.dimchel.fa.feature.competitions.CompetitionsScreen
 
 class MainActivity : ComponentActivity() {
 

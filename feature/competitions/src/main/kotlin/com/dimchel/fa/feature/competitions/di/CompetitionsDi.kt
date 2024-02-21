@@ -1,6 +1,7 @@
 package com.dimchel.fa.feature.competitions.di
 
 import android.app.Application
+import com.dimchel.fa.core.common.di.Dependencies
 import com.dimchel.fa.core.common.di.FeatureScope
 import com.dimchel.fa.core.network.di.CoreNetworkDependency
 import com.dimchel.fa.feature.competitions.data.api.CompetitionsApiService
@@ -19,7 +20,7 @@ import retrofit2.Retrofit
     modules = [CompetitionsModule::class],
     dependencies = [CoreNetworkDependency::class]
 )
-internal interface CompetitionsComponent {
+internal interface CompetitionsComponent : Dependencies {
 
     @Component.Factory
     interface Factory {
