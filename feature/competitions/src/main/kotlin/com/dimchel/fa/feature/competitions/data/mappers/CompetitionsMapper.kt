@@ -6,6 +6,7 @@ import com.dimchel.fa.feature.competitions.domain.models.CompetitionModel
 internal fun CompetitionScheme.toModel() = CompetitionModel(
     id = id,
     name = name,
+    code = code,
     lastUpdated = lastUpdated,
     emblemUrl = emblemUrl,
 )

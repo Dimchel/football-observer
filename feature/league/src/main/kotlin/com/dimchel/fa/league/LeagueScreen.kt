@@ -14,7 +14,7 @@ import com.dimchel.fa.league.presentation.LeagueViewModel
 import com.dimchel.fa.league.presentation.LoadingState
 import com.dimchel.fa.league.presentation.SuccessState
 
-internal class LeagueScreen(private val leagueStartParams: LeagueStartParams) : Screen {
+class LeagueScreen(private val leagueStartParams: LeagueStartParams) : Screen {
 
     @Composable
     override fun Content() {

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dimchel.fa.core.common.utils.klog
 import com.dimchel.fa.league.data.repositories.LeagueRepository
+import com.dimchel.fa.league.di.LeagueDependencyProvider
 import com.dimchel.fa.league.di.LeagueStartParams
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -31,5 +32,9 @@ internal class LeagueViewModel @Inject constructor(
 
     fun onLeagueClicked(leagueId: Int) {
         klog("onLeagueClicked: $leagueId")
+    }
+
+    override fun onCleared() {
+        LeagueDependencyProvider.release()
     }
 }

@@ -12,7 +12,7 @@ internal class CompetitionsScheme(
 internal class CompetitionScheme(
     @SerialName("id") val id: Int,
     @SerialName("name") val name: String,
-    @SerialName("code") val code: String?,
+    @SerialName("code") val code: String,
     @SerialName("lastUpdated") val lastUpdated: String,
     @SerialName("emblem") val emblemUrl: String?,
 )
