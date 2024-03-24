@@ -28,7 +28,7 @@ internal class CompetitionsViewModel @Inject constructor(
         }
     }
 
-    fun onLeagueClicked(leagueId: String) {
+    fun onCompetitionClicked(leagueId: String) {
         navigator.push(LeagueScreen(LeagueStartParams(leagueId)))
     }
 

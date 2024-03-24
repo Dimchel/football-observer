@@ -45,7 +45,7 @@ internal fun ErrorState() {
 @Composable
 internal fun SuccessState(
     competitions: List<CompetitionModel>,
-    onCompetitionClicked: (competitionId: String) -> Unit,
+    onCompetitionClicked: (competition: CompetitionModel) -> Unit,
 ) {
     LazyColumn {
         items(competitions) { competition ->
@@ -57,11 +57,11 @@ internal fun SuccessState(
 @Composable
 private fun CompetitionItem(
     competition: CompetitionModel,
-    onCompetitionClicked: (competitionId: String) -> Unit,
+    onCompetitionClicked: (competition: CompetitionModel) -> Unit,
 ) {
     Column {
         Row(
-            modifier = Modifier.clickable { onCompetitionClicked(competition.code) },
+            modifier = Modifier.clickable { onCompetitionClicked(competition) },
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Box(

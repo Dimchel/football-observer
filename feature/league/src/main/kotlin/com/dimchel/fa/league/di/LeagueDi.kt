@@ -1,6 +1,7 @@
 package com.dimchel.fa.league.di
 
 import android.app.Application
+import com.dimchel.core.data.di.CoreDataDependency
 import com.dimchel.fa.core.common.di.Dependencies
 import com.dimchel.fa.core.common.di.FeatureScope
 import com.dimchel.fa.core.network.di.CoreNetworkDependency
@@ -18,7 +19,10 @@ import retrofit2.Retrofit
 @FeatureScope
 @Component(
     modules = [LeagueModule::class],
-    dependencies = [CoreNetworkDependency::class]
+    dependencies = [
+        CoreNetworkDependency::class,
+        CoreDataDependency::class,
+    ]
 )
 internal interface LeagueComponent : Dependencies {
 
@@ -28,6 +32,7 @@ internal interface LeagueComponent : Dependencies {
             @BindsInstance application: Application,
             @BindsInstance leagueStartParams: LeagueStartParams,
             coreNetworkDependency: CoreNetworkDependency,
+            coreDataDependency: CoreDataDependency,
         ): LeagueComponent
     }
 

@@ -8,7 +8,7 @@ internal class LeagueModel(
 internal class LeagueInfoModel(
     val id: Int,
     val name: String,
-    val emblemUrl: String,
+    val emblemUrl: String?,
 )
 
 internal class CompetitorModel(

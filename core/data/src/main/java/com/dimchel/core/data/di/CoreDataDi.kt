@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.dimchel.core.data.FA_DATABASE_NAME
 import com.dimchel.core.data.FaDatabase
 import com.dimchel.core.data.daos.CompetitionsDao
+import com.dimchel.core.data.daos.LeaguesDao
 import com.dimchel.fa.core.common.di.AppScope
 import dagger.BindsInstance
 import dagger.Component
@@ -34,11 +35,16 @@ internal class DataModule {
                 context = application,
                 klass = FaDatabase::class.java,
                 name = FA_DATABASE_NAME,
-            ).build()
+            ).fallbackToDestructiveMigration().build()
 
         @AppScope
         @Provides
         fun provideCompetitionsDao(faDatabase: FaDatabase): CompetitionsDao =
             faDatabase.competitionsDao()
+
+        @AppScope
+        @Provides
+        fun provideLeaguesDao(faDatabase: FaDatabase): LeaguesDao =
+            faDatabase.leaguesDao()
     }
 }

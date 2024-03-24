@@ -1,22 +1,30 @@
 package com.dimchel.fa.league.data.repositories
 
+import com.dimchel.core.data.daos.LeaguesDao
 import com.dimchel.fa.league.data.api.LeagueApiService
-import com.dimchel.fa.league.data.mappers.mapToModel
+import com.dimchel.fa.league.data.mappers.toEntity
+import com.dimchel.fa.league.data.mappers.toModel
 import com.dimchel.fa.league.domain.models.LeagueModel
 import javax.inject.Inject
 
 internal class LeagueRepositoryImpl @Inject constructor(
     private val apiService: LeagueApiService,
+    private val dao: LeaguesDao,
 ) : LeagueRepository {
 
-    private var cachedData: LeagueModel? = null
-
     override suspend fun getLeague(leagueCode: String): LeagueModel {
-        return cachedData ?: fetchLeague(leagueCode)
+        val localData = dao.getLeague(leagueCode)
+        return if (localData == null || localData.standings.isEmpty()) {
+            fetch(leagueCode)
+        } else {
+            localData.toModel()
+        }
     }
 
-    private suspend fun fetchLeague(leagueCode: String): LeagueModel =
+    private suspend fun fetch(leagueCode: String): LeagueModel =
         apiService.getLeague(leagueCode)
-            .mapToModel()
-            .also { cachedData = it }
+            .toModel()
+            .also { leagueModel ->
+                dao.insertCompetitors(leagueModel.standings.map { it.toEntity(leagueCode) })
+            }
 }

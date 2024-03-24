@@ -35,7 +35,7 @@ object CompetitionsScreen : Screen {
             is CompetitionsUiState.Error -> ErrorState()
             is CompetitionsUiState.Success -> SuccessState(
                 state.competitionsList,
-                onCompetitionClicked = { viewModel.onLeagueClicked(it) }
+                onCompetitionClicked = { viewModel.onCompetitionClicked(it.code) }
             )
         }
     }

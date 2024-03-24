@@ -23,7 +23,7 @@ internal class LeagueViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val leagueData = repository.getLeague(leagueStartParams.leagueId)
+            val leagueData = repository.getLeague(leagueStartParams.leagueCode)
             mutableUiState.update {
                 LeagueUiState.Success(leagueData.competition, leagueData.standings)
             }
