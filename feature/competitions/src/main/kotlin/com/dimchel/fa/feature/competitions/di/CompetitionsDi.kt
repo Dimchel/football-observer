@@ -2,6 +2,7 @@ package com.dimchel.fa.feature.competitions.di
 
 import android.app.Application
 import cafe.adriel.voyager.navigator.Navigator
+import com.dimchel.core.data.di.CoreDataDependency
 import com.dimchel.fa.core.common.di.Dependencies
 import com.dimchel.fa.core.common.di.FeatureScope
 import com.dimchel.fa.core.network.di.CoreNetworkDependency
@@ -19,7 +20,10 @@ import retrofit2.Retrofit
 @FeatureScope
 @Component(
     modules = [CompetitionsModule::class],
-    dependencies = [CoreNetworkDependency::class]
+    dependencies = [
+        CoreNetworkDependency::class,
+        CoreDataDependency::class,
+    ]
 )
 internal interface CompetitionsComponent : Dependencies {
 
@@ -29,6 +33,7 @@ internal interface CompetitionsComponent : Dependencies {
             @BindsInstance application: Application,
             @BindsInstance navigator: Navigator,
             coreNetworkDependency: CoreNetworkDependency,
+            coreDataDependency: CoreDataDependency,
         ): CompetitionsComponent
     }
 

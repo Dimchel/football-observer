@@ -17,6 +17,7 @@ dependencyResolutionManagement {
 rootProject.name = "Football Observer"
 
 include(":app")
+include(":core:data")
 include(":core:common")
 include(":core:navigation")
 include(":core:network")
