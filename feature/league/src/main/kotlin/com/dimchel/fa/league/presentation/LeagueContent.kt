@@ -1,9 +1,11 @@
 package com.dimchel.fa.league.presentation
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -11,6 +13,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -33,7 +36,10 @@ import com.dimchel.fa.league.domain.models.TeamModel
 
 @Composable
 internal fun LoadingState() {
-    Box(contentAlignment = Alignment.Center) {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center,
+    ) {
         CircularProgressIndicator(
             modifier = Modifier.width(64.dp)
         )
@@ -41,9 +47,19 @@ internal fun LoadingState() {
 }
 
 @Composable
-internal fun ErrorState() {
-    Box(contentAlignment = Alignment.Center) {
+internal fun ErrorState(
+    onRetryClicked: () -> Unit,
+) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
         Text(text = "Some error happened")
+        Spacer(modifier = Modifier.size(16.dp))
+        FilledTonalButton(onClick = { onRetryClicked.invoke() }) {
+            Text(text = "Retry")
+        }
     }
 }
 
@@ -250,14 +266,14 @@ private fun LeagueItemPreview() {
     LeagueItem(0, competitor)
 }
 
-@Preview
+@Preview(showSystemUi = true)
 @Composable
 private fun LoadingPreview() {
     LoadingState()
 }
 
-@Preview
+@Preview(showSystemUi = true)
 @Composable
 private fun ErrorPreview() {
-    ErrorState()
+    ErrorState {}
 }

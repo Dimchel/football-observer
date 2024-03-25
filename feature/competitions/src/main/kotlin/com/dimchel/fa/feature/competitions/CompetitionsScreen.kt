@@ -32,7 +32,9 @@ object CompetitionsScreen : Screen {
 
         when (val state = uiState) {
             is CompetitionsUiState.Loading -> LoadingState()
-            is CompetitionsUiState.Error -> ErrorState()
+            is CompetitionsUiState.Error -> ErrorState(
+                onRetryClicked = { viewModel.onRetryClicked() }
+            )
             is CompetitionsUiState.Success -> SuccessState(
                 state.competitionsList,
                 onCompetitionClicked = { viewModel.onCompetitionClicked(it.code) }

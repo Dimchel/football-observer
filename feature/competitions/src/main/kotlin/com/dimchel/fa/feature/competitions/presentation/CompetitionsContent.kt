@@ -2,6 +2,7 @@ package com.dimchel.fa.feature.competitions.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,6 +15,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -28,9 +30,13 @@ import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.dimchel.fa.feature.competitions.domain.models.CompetitionModel
 
+
 @Composable
 internal fun LoadingState() {
-    Box(contentAlignment = Alignment.Center) {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center,
+    ) {
         CircularProgressIndicator(
             modifier = Modifier.width(64.dp)
         )
@@ -38,9 +44,19 @@ internal fun LoadingState() {
 }
 
 @Composable
-internal fun ErrorState() {
-    Box(contentAlignment = Alignment.Center) {
+internal fun ErrorState(
+    onRetryClicked: () -> Unit,
+) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
         Text(text = "Some error happened")
+        Spacer(modifier = Modifier.size(16.dp))
+        FilledTonalButton(onClick = { onRetryClicked.invoke() }) {
+            Text(text = "Retry")
+        }
     }
 }
 
@@ -104,19 +120,19 @@ private fun CompetitionItem(
 @Composable
 private fun CompetitionItemPreview() {
     CompetitionItem(
-        competition = CompetitionModel(1, "Premiew league", "", "", ""),
+        competition = CompetitionModel(1, "Premier league", "", "", ""),
         onCompetitionClicked = {},
     )
 }
 
-@Preview
+@Preview(showSystemUi = true)
 @Composable
 private fun CompetitionLoadingPreview() {
     LoadingState()
 }
 
-@Preview
+@Preview(showSystemUi = true)
 @Composable
 private fun CompetitionErrorPreview() {
-    ErrorState()
+    ErrorState {}
 }

@@ -23,6 +23,24 @@ internal class LeagueViewModel @Inject constructor(
     val uiState: StateFlow<LeagueUiState> = mutableUiState
 
     init {
+        tryToLoadData()
+    }
+
+    override fun onCleared() {
+        LeagueDependencyProvider.release()
+    }
+
+    fun onLeagueClicked(leagueId: Int) {
+        klog("onLeagueClicked: $leagueId")
+    }
+
+    fun onRetryClicked() {
+        tryToLoadData()
+    }
+
+    private fun tryToLoadData() {
+        mutableUiState.update { LeagueUiState.Loading }
+
         viewModelScope.launch {
             val getLeagueResult = repository.getLeague(leagueStartParams.leagueCode)
             val resultedState = when (getLeagueResult) {
@@ -38,13 +56,5 @@ internal class LeagueViewModel @Inject constructor(
             }
             mutableUiState.update { resultedState }
         }
-    }
-
-    fun onLeagueClicked(leagueId: Int) {
-        klog("onLeagueClicked: $leagueId")
-    }
-
-    override fun onCleared() {
-        LeagueDependencyProvider.release()
     }
 }

@@ -24,6 +24,24 @@ internal class CompetitionsViewModel @Inject constructor(
     val uiState: StateFlow<CompetitionsUiState> = mutableUiState
 
     init {
+        tryToLoadData()
+    }
+
+    override fun onCleared() {
+        CompetitionsDependencyProvider.release()
+    }
+
+    fun onCompetitionClicked(leagueId: String) {
+        navigator.push(LeagueScreen(LeagueStartParams(leagueId)))
+    }
+
+    fun onRetryClicked() {
+        tryToLoadData()
+    }
+
+    private fun tryToLoadData() {
+        mutableUiState.update { CompetitionsUiState.Loading }
+
         viewModelScope.launch {
             val resultedUiState = when (val getCompetitionsResult = repository.getCompetitions()) {
                 is DataResult.Success -> CompetitionsUiState.Success(getCompetitionsResult.result)
@@ -31,13 +49,5 @@ internal class CompetitionsViewModel @Inject constructor(
             }
             mutableUiState.update { resultedUiState }
         }
-    }
-
-    fun onCompetitionClicked(leagueId: String) {
-        navigator.push(LeagueScreen(LeagueStartParams(leagueId)))
-    }
-
-    override fun onCleared() {
-        CompetitionsDependencyProvider.release()
     }
 }

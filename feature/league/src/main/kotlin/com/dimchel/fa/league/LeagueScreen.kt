@@ -26,7 +26,7 @@ class LeagueScreen(private val leagueStartParams: LeagueStartParams) : Screen {
 
         when (val state = uiState) {
             is LeagueUiState.Loading -> LoadingState()
-            is LeagueUiState.Error -> ErrorState()
+            is LeagueUiState.Error -> ErrorState(onRetryClicked = { viewModel.onRetryClicked() })
             is LeagueUiState.Success -> SuccessState(state.standings)
         }
     }
