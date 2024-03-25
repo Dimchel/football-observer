@@ -2,6 +2,7 @@ package com.dimchel.fa.league.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dimchel.fa.core.common.architecture.DataResult
 import com.dimchel.fa.core.common.utils.klog
 import com.dimchel.fa.league.data.repositories.LeagueRepository
 import com.dimchel.fa.league.di.LeagueDependencyProvider
@@ -24,9 +25,15 @@ internal class LeagueViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             val leagueData = repository.getLeague(leagueStartParams.leagueCode)
-            mutableUiState.update {
-                LeagueUiState.Success(leagueData.competition, leagueData.standings)
+            val resultedState = when (leagueData) {
+                is DataResult.Success -> {
+                    LeagueUiState.Success(leagueData.result.competition, leagueData.result.standings)
+                }
+                is DataResult.Failure -> {
+                    LeagueUiState.Error
+                }
             }
+            mutableUiState.update { resultedState }
         }
     }
 

@@ -42,7 +42,9 @@ internal fun LoadingState() {
 
 @Composable
 internal fun ErrorState() {
-    Text(text = "Some error happened")
+    Box(contentAlignment = Alignment.Center) {
+        Text(text = "Some error happened")
+    }
 }
 
 @Composable
@@ -246,4 +248,16 @@ private fun LeagueItemPreview() {
         goalDifference = 12,
     )
     LeagueItem(0, competitor)
+}
+
+@Preview
+@Composable
+private fun LoadingPreview() {
+    LoadingState()
+}
+
+@Preview
+@Composable
+private fun ErrorPreview() {
+    ErrorState()
 }
