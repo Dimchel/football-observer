@@ -39,7 +39,9 @@ internal fun LoadingState() {
 
 @Composable
 internal fun ErrorState() {
-    Text(text = "Some error happened")
+    Box(contentAlignment = Alignment.Center) {
+        Text(text = "Some error happened")
+    }
 }
 
 @Composable
@@ -105,4 +107,16 @@ private fun CompetitionItemPreview() {
         competition = CompetitionModel(1, "Premiew league", "", "", ""),
         onCompetitionClicked = {},
     )
+}
+
+@Preview
+@Composable
+private fun CompetitionLoadingPreview() {
+    LoadingState()
+}
+
+@Preview
+@Composable
+private fun CompetitionErrorPreview() {
+    ErrorState()
 }

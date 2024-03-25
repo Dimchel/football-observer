@@ -3,6 +3,7 @@ package com.dimchel.fa.feature.competitions.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cafe.adriel.voyager.navigator.Navigator
+import com.dimchel.fa.core.common.architecture.DataResult
 import com.dimchel.fa.feature.competitions.data.repositories.CompetitionsRepository
 import com.dimchel.fa.feature.competitions.di.CompetitionsDependencyProvider
 import com.dimchel.fa.league.LeagueScreen
@@ -24,7 +25,11 @@ internal class CompetitionsViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            mutableUiState.update { CompetitionsUiState.Success(repository.getCompetitions()) }
+            val resultedUiState = when (val getCompetitionsResult = repository.getCompetitions()) {
+                is DataResult.Success -> CompetitionsUiState.Success(getCompetitionsResult.result)
+                is DataResult.Failure -> CompetitionsUiState.Error
+            }
+            mutableUiState.update { resultedUiState }
         }
     }
 

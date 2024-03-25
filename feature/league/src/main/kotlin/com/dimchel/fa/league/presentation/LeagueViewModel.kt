@@ -24,10 +24,13 @@ internal class LeagueViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val leagueData = repository.getLeague(leagueStartParams.leagueCode)
-            val resultedState = when (leagueData) {
+            val getLeagueResult = repository.getLeague(leagueStartParams.leagueCode)
+            val resultedState = when (getLeagueResult) {
                 is DataResult.Success -> {
-                    LeagueUiState.Success(leagueData.result.competition, leagueData.result.standings)
+                    LeagueUiState.Success(
+                        leagueInfo = getLeagueResult.result.competition,
+                        standings = getLeagueResult.result.standings,
+                    )
                 }
                 is DataResult.Failure -> {
                     LeagueUiState.Error

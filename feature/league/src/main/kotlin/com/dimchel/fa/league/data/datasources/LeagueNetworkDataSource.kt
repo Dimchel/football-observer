@@ -7,8 +7,8 @@ import com.dimchel.fa.league.data.schemes.LeagueScheme
 import javax.inject.Inject
 
 internal class LeagueNetworkDataSource @Inject constructor(
-    private val leagueApiService: LeagueApiService
+    private val apiService: LeagueApiService
 ) {
     internal suspend fun fetchLeague(leagueCode: String): DataResult<LeagueScheme> =
-        safeApiCall { leagueApiService.getLeague(leagueCode) }
+        safeApiCall { apiService.getLeague(leagueCode) }
 }
