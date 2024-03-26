@@ -1,7 +1,6 @@
 package com.dimchel.fa.feature.competitions.di
 
 import android.app.Application
-import cafe.adriel.voyager.navigator.Navigator
 import com.dimchel.core.data.di.CoreDataDependency
 import com.dimchel.fa.core.common.di.Dependencies
 import com.dimchel.fa.core.common.di.FeatureScope
@@ -31,7 +30,6 @@ internal interface CompetitionsComponent : Dependencies {
     interface Factory {
         fun create(
             @BindsInstance application: Application,
-            @BindsInstance navigator: Navigator,
             coreNetworkDependency: CoreNetworkDependency,
             coreDataDependency: CoreDataDependency,
         ): CompetitionsComponent

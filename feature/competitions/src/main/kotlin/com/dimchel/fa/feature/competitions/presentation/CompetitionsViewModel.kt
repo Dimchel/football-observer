@@ -16,8 +16,9 @@ import javax.inject.Inject
 
 internal class CompetitionsViewModel @Inject constructor(
     private val repository: CompetitionsRepository,
-    private val navigator: Navigator,
 ) : ViewModel() {
+
+    private lateinit var navigator: Navigator
 
     private val mutableUiState: MutableStateFlow<CompetitionsUiState> =
         MutableStateFlow(CompetitionsUiState.Loading)
@@ -29,6 +30,10 @@ internal class CompetitionsViewModel @Inject constructor(
 
     override fun onCleared() {
         CompetitionsDependencyProvider.release()
+    }
+
+    fun setNavigator(navigator: Navigator) {
+        this.navigator = navigator
     }
 
     fun onCompetitionClicked(leagueId: String) {
