@@ -19,3 +19,9 @@ suspend fun <T> DataResult<T>.alsoSuccess(function: suspend (T) -> Unit): DataRe
         }
         is DataResult.Failure -> this
     }
+
+suspend fun <T> DataResult<T>.mapFailure(function: suspend () -> DataResult<T>): DataResult<T> =
+    when (this) {
+        is DataResult.Success -> this
+        is DataResult.Failure -> function.invoke()
+    }

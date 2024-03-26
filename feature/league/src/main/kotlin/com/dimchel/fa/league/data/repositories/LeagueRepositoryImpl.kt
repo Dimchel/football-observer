@@ -2,6 +2,7 @@ package com.dimchel.fa.league.data.repositories
 
 import com.dimchel.fa.core.common.architecture.DataResult
 import com.dimchel.fa.core.common.architecture.alsoSuccess
+import com.dimchel.fa.core.common.architecture.mapFailure
 import com.dimchel.fa.core.common.architecture.mapSuccess
 import com.dimchel.fa.league.data.datasources.LeagueDBDataSource
 import com.dimchel.fa.league.data.datasources.LeagueNetworkDataSource
@@ -16,12 +17,7 @@ internal class LeagueRepositoryImpl @Inject constructor(
 ) : LeagueRepository {
 
     override suspend fun getLeague(leagueCode: String): DataResult<LeagueModel> {
-        val localData = dbDataSource.getLeague(leagueCode)
-        return if (localData == null || localData.standings.isEmpty()) {
-            fetch(leagueCode)
-        } else {
-            DataResult.Success(localData.toModel())
-        }
+        return fetch(leagueCode).mapFailure { loadFromDb(leagueCode) }
     }
 
     private suspend fun fetch(leagueCode: String): DataResult<LeagueModel> =
@@ -34,4 +30,8 @@ internal class LeagueRepositoryImpl @Inject constructor(
                     competitors = result.standings.map { it.toEntity(leagueCode) }
                 )
             }
+
+    private suspend fun loadFromDb(leagueCode: String): DataResult<LeagueModel> =
+        dbDataSource.getLeague(leagueCode)
+            .mapSuccess { it.toModel() }
 }
