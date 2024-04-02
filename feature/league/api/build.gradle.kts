@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.dimchel.fa.feature.competitions"
+    namespace = "com.dimchel.fa.feature.league.api"
 }
 
 dependencies {
@@ -14,9 +14,6 @@ dependencies {
     implementation(project(":core:data"))
     implementation(project(":core:ui"))
     implementation(project(":core:network"))
-    // TODO: move to api
-    implementation(project(":feature:league:api"))
-    implementation(project(":feature:league:impl"))
 
     ksp(libs.google.dagger.compiler)
 }

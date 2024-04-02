@@ -6,8 +6,8 @@ import cafe.adriel.voyager.navigator.Navigator
 import com.dimchel.fa.core.common.architecture.DataResult
 import com.dimchel.fa.feature.competitions.data.repositories.CompetitionsRepository
 import com.dimchel.fa.feature.competitions.di.CompetitionsDependencyProvider
+import com.dimchel.fa.feature.league.impl.di.LeagueStartParams
 import com.dimchel.fa.league.LeagueScreen
-import com.dimchel.fa.league.di.LeagueStartParams
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
