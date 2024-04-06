@@ -3,21 +3,21 @@ package com.dimchel.fa.core.common.di
 import android.app.Application
 
 
-interface Dependencies
-interface DependencyStartParams
+interface OutDeps
+interface InDeps
 
-interface BaseDependencyProvider<D: Dependencies> {
+interface DepsProvider<D: OutDeps> {
     fun provide(application: Application): D
     fun release()
 }
 
-interface BaseDependencyProviderParametrized<D: Dependencies, SP: DependencyStartParams> {
+interface DepsProviderParametrized<D: OutDeps, SP: InDeps> {
     fun provide(application: Application, startParams: SP): D
     fun release()
 }
 
-abstract class BaseDependencyProviderImpl<D: Dependencies> :
-    BaseDependencyProvider<D> {
+abstract class BaseDepsProviderImpl<D: OutDeps> :
+    DepsProvider<D> {
 
     private var dependencies : D? = null
 
@@ -36,8 +36,8 @@ abstract class BaseDependencyProviderImpl<D: Dependencies> :
     }
 }
 
-abstract class BaseDependencyProviderParametrizedImpl<D: Dependencies, SP: DependencyStartParams> :
-    BaseDependencyProviderParametrized<D, SP> {
+abstract class BaseDepsProviderParametrizedImpl<D: OutDeps, SP: InDeps> :
+    DepsProviderParametrized<D, SP> {
 
     private var dependencies : D? = null
 

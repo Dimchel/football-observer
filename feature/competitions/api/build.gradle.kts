@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.dimchel.fa.feature.league.api"
+    namespace = "com.dimchel.fa.feature.competitions.api"
 }
 
 dependencies {

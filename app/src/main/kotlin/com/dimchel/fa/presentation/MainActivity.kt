@@ -3,16 +3,23 @@ package com.dimchel.fa.presentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.Navigator
-import com.dimchel.fa.feature.competitions.CompetitionsScreen
+import com.dimchel.fa.feature.competitions.impl.di.CompetitionsDepsProviderImpl
 
 class MainActivity : ComponentActivity() {
+
+    private val competitionsScreen: Screen by lazy {
+        CompetitionsDepsProviderImpl.provide(application)
+            .getCompetitionsScreenProvider()
+            .getCompetitionsScreen()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            Navigator(CompetitionsScreen()) {
+            Navigator(competitionsScreen) {
                 AppContent()
             }
         }

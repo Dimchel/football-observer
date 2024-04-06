@@ -46,10 +46,13 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:data"))
     implementation(project(":core:common"))
     implementation(project(":core:navigation"))
+    implementation(project(":core:network"))
     implementation(project(":core:ui"))
-    implementation(project(":feature:competitions"))
+    implementation(project(":feature:competitions:api"))
+    implementation(project(":feature:competitions:impl"))
     implementation(project(":feature:league:api"))
     implementation(project(":feature:league:impl"))
 }

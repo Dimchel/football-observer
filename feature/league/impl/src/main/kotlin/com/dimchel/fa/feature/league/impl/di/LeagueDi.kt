@@ -1,14 +1,16 @@
 package com.dimchel.fa.feature.league.impl.di
 
 import android.app.Application
+import cafe.adriel.voyager.core.screen.Screen
 import com.dimchel.core.data.di.CoreDataDependency
-import com.dimchel.fa.core.common.di.Dependencies
 import com.dimchel.fa.core.common.di.FeatureScope
 import com.dimchel.fa.core.network.di.CoreNetworkDependency
+import com.dimchel.fa.feature.league.api.di.LeagueOutDeps
+import com.dimchel.fa.feature.league.api.presentation.LeagueScreenProvider
 import com.dimchel.fa.feature.league.impl.data.api.LeagueApiService
 import com.dimchel.fa.feature.league.impl.data.repositories.LeagueRepository
 import com.dimchel.fa.feature.league.impl.data.repositories.LeagueRepositoryImpl
-import com.dimchel.fa.feature.league.impl.presentation.LeagueViewModel
+import com.dimchel.fa.feature.league.impl.presentation.LeagueScreen
 import dagger.Binds
 import dagger.BindsInstance
 import dagger.Component
@@ -24,19 +26,16 @@ import retrofit2.Retrofit
         CoreDataDependency::class,
     ]
 )
-internal interface LeagueComponent : Dependencies {
+internal interface LeagueComponent : LeagueOutDeps {
 
     @Component.Factory
     interface Factory {
         fun create(
             @BindsInstance application: Application,
-            @BindsInstance leagueStartParams: LeagueStartParams,
             coreNetworkDependency: CoreNetworkDependency,
             coreDataDependency: CoreDataDependency,
         ): LeagueComponent
     }
-
-    fun getViewModel(): LeagueViewModel
 }
 
 @Module
@@ -53,6 +52,14 @@ internal abstract class LeagueModule {
     @FeatureScope
     @Binds
     abstract fun provideLeaguesRepository(
-        leagueRepository: LeagueRepositoryImpl
+        repository: LeagueRepositoryImpl
     ): LeagueRepository
+
+    @Binds
+    abstract fun provideLeagueScreen(screen: LeagueScreen): Screen
+
+    @Binds
+    abstract fun provideLeagueScreenProvider(
+        provider: LeagueScreenProviderImpl
+    ): LeagueScreenProvider
 }
