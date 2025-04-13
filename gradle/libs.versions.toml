@@ -1,23 +1,23 @@
 [versions]
-kotlin = "1.8.22"
-agp = "8.2.2"
-coroutines = "1.7.3"
+kotlin = "2.1.20"
+agp = "8.9.1"
+coroutines = "1.8.1"
 dagger = "2.50"
-androidx-core_ktx = "1.12.0"
-androidx-lifecycle = "2.7.0"
-androidx-navigation-compose = "2.7.7"
-androidx-lifecycle-compose = "2.7.0"
-androidx-compose-bom = "2024.02.00"
-androidx-compose-material = "1.6.1"
-androidx-compose-material3 = "1.2.0"
-androidx-room = "2.6.1"
-android-material = "1.11.0"
-retrofit = "2.9.0"
+androidx-core_ktx = "1.16.0"
+androidx-lifecycle = "2.8.7"
+androidx-navigation-compose = "2.8.9"
+androidx-lifecycle-compose = "2.8.7"
+androidx-compose-bom = "2025.04.00"
+androidx-compose-material = "1.7.8"
+androidx-compose-material3 = "1.3.2"
+androidx-room = "2.7.0"
+android-material = "1.12.0"
+retrofit = "2.11.0"
 okhttp = "4.12.0"
-serialization = "1.6.0"
+serialization = "1.7.3"
 kotlinx_serialization_converter = "1.0.0"
-coil-compose = "2.5.0"
-voyager = "1.0.0"
+coil-compose = "2.6.0"
+voyager = "1.0.1"
 
 [libraries]
 androidx-corektx = { module = "androidx.core:core-ktx", version.ref = "androidx-core_ktx" }
@@ -60,5 +60,7 @@ cafeadriel-voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator
 
 [plugins]
 fa-kotlin-module = { id = "kotlin-module", version = "unspecified" }
+org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 fa-feature-module = { id = "feature-module", version = "unspecified" }
 fa-compose-module = { id = "compose-module", version = "unspecified" }

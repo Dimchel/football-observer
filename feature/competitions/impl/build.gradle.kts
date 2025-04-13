@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.fa.feature.module)
     alias(libs.plugins.fa.compose.module)
+    alias(libs.plugins.compose.compiler)
     id("com.google.devtools.ksp")
     id("kotlinx-serialization")
 }
