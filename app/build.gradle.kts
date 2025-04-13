@@ -1,16 +1,16 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose.compiler)
 }
 
 android {
     namespace = "com.dimchel.fa"
-    compileSdk = 35
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         applicationId = "com.dimchel.fa"
-        minSdk = 26
+        minSdk = libs.versions.minSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
 

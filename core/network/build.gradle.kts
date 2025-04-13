@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.fa.feature.module)
-    id("com.google.devtools.ksp")
+    alias(libs.plugins.ksp)
 }
 
 android {
